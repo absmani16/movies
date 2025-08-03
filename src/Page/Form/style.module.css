@@ -1,0 +1,14 @@
+.input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.field {
+    margin-top: 10px;
+}
+
+.label {
+    width: 150px;
+    display: inline-block;
+}

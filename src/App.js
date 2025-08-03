@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, lazy } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./assets/style.module.css";
+
+const Home = lazy(() => import("./Page/Home"));
+const Edit = lazy(() => import("./Page/Edit"));
+const Add = lazy(() => import("./Page/Add"));
+const Loader = lazy(() => import("./Component/Loader"));
+
+const SuspensePage = (element) => {
+  return (
+    <Suspense fallback={<Loader />}>
+      {element}
+    </Suspense>
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={SuspensePage(<Home />)} />
+        <Route path="/home/:id" element={SuspensePage(<Edit />)} />
+        <Route path="/home/create" element={SuspensePage(<Add />)} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
