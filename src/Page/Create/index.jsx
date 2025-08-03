@@ -26,7 +26,7 @@ const Create = () => {
                 method="post"
                 loadOnMount={false}
                 paramsData={formValues}
-                onSuccess={() => navigate("/home")}
+                onSuccess={() => navigate("/")}
                 render={({ loadOnMount, fetching }) => (
                     <form 
                     name="create"

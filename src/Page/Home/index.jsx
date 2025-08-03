@@ -30,7 +30,7 @@ const Home = () => {
                     label="Create"
                     icon="fa-solid fa-list-ul"
                     className={style.addBtn}
-                    onClick={() => navigate("/home/create")}
+                    onClick={() => navigate("/create")}
                 />
                 {
                     fetching === true && (
@@ -55,7 +55,7 @@ const Home = () => {
                                     columnTitle: "Actions",
                                     render: ({ item }) => (
                                         <div className={style.actions}>
-                                            <button title="Edit" onClick={() => navigate(`/home/${item.id}`)}>
+                                            <button title="Edit" onClick={() => navigate(`/${item.id}`)}>
                                                 <i className="fa-solid fa-pencil"></i>
                                             </button>
                                             <Delete
