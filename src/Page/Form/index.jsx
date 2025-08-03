@@ -1,88 +1,67 @@
-import { Field } from "redux-form";
-import { required } from "redux-form-validators";
-
+import Label from "./Label";
 import style from "./style.module.css"
 
-import Label from "./Label";
-
-const Form = () => {
+const Form = ({ onChange, formValues }) => {
+    const fields = [
+        {
+            label: "Title",
+            type: "text",
+            placeholder: "Enter Title"
+        },
+        {
+            label: "Type",
+            type: "text",
+            placeholder: "Enter Type"
+        },
+        {
+            label: "Director",
+            type: "text",
+            placeholder: "Enter Director"
+        },
+        {
+            label: "Budget",
+            type: "text",
+            placeholder: "Enter Budget"
+        },
+        {
+            label: "Location",
+            type: "text",
+            placeholder: "Enter Location"
+        },
+        {
+            label: "Duration",
+            type: "Durations",
+            placeholder: "Enter Duration"
+        },
+        {
+            label: "Year",
+            type: "number",
+            placeholder: "Enter Year"
+        }
+    ]
     return (
-        <>
-            <div>
-                <Label text="Title" id="title" />
-                <Field
-                    name="title"
-                    component={({ input, meta }) => {
-                        console.log(input);
-                        return (
-                            <>
-                                <input {...input} className={style.input} />
-                                {
-                                    meta.error && (
-                                        <span>{meta.error}</span>
-                                    )
-                                }
-                            </>
-                        )
-                    }}
-                    validate={[required()]}
-                />
-            </div>
-            <div className={style.field}>
-                <Label text="Type" />
-                <Field
-                    name="type"
-                    component="input"
-                    validate={[required()]}
-                    className={style.input}
-                />
-            </div>
-            <div className={style.field}>
-                <Label text="Director" />
-                <Field
-                    name="director"
-                    component="input"
-                    validate={[required()]}
-                    className={style.input}
-                />
-            </div>
-            <div className={style.field}>
-                <Label text="Budget" />
-                <Field
-                    name="budget"
-                    component="input"
-                    validate={[required()]}
-                    className={style.input}
-                />
-            </div>
-            <div className={style.field}>
-                <Label text="Location" />
-                <Field
-                    name="location"
-                    component="input"
-                    validate={[required()]}
-                    className={style.input}
-                />
-            </div>
-            <div className={style.field}>
-                <Label text="Duration" />
-                <Field
-                    name="duration"
-                    component="input"
-                    validate={[required()]}
-                    className={style.input}
-                />
-            </div>
-            <div className={style.field}>
-                <Label text="Year" />
-                <Field
-                    name="year"
-                    component="input"
-                    validate={[required()]}
-                    className={style.input}
-                />
-            </div>
-        </>
+        <div className={style.fields}>
+            {
+                fields.map(field => {
+                    const { label, type, placeholder } = field;
+                    const name = label.toLowerCase();
+                    return (
+                        <div className={style.field} key={`form_label_${name}`}>
+                            <Label text={label} id={name} />
+                            <input
+                                name={name}
+                                type={type}
+                                placeholder={placeholder}
+                                required
+                                value={formValues[name]}
+                                className={style.input}
+                                onChange={(e) => onChange({ [name]: e.target.value })}
+                            />
+                        </div>
+                    )
+                })
+            }
+        </div>
     )
 }
 

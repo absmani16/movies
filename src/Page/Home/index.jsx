@@ -27,7 +27,7 @@ const Home = () => {
             <Section>
                 <Title>List of Movies</Title>
                 <Button
-                    label="Add"
+                    label="Create"
                     icon="fa-solid fa-list-ul"
                     className={style.addBtn}
                     onClick={() => navigate("/home/create")}
@@ -40,7 +40,7 @@ const Home = () => {
                     )
                 }
                 {
-                    fetching === false && (
+                    fetching === false && (data.list || []).length > 0 && (
                         <Grid
                             data={data.list}
                             columns={{

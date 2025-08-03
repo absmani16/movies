@@ -15,7 +15,7 @@ const Layout = ({ data, columns }) => {
                         <Rows
                             item={item}
                             columns={columns}
-                            keys={`table_rows_item_${item.id}`}
+                            key={`table_rows_item_${item.id}`}
                         />
                     ))
                 }

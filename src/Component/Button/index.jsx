@@ -1,10 +1,21 @@
+import Loader from "../Loader";
 import style from "./style.module.css";
 
-const Button = ({ onClick = () => { }, label = "", icon = false, disabled = false, className = false, submit = false }) => {
+const Button = ({ onClick = () => { }, fetching = false, label = "", icon = false, disabled = false, className = false, submit = false }) => {
     return (
         <div className={className !== false ? className : ""}>
             {
-                disabled !== false && (
+                fetching === true && (
+                    <div className={style.button}>
+                        <Loader
+                            text={false}
+                            className={style.loader}
+                        />
+                    </div>
+                )
+            }
+            {
+                disabled !== false && fetching === false && (
                     <div className={`${style.button} ${style.disabled}`}>
                         {
                             icon !== false && (
@@ -18,7 +29,7 @@ const Button = ({ onClick = () => { }, label = "", icon = false, disabled = fals
                 )
             }
             {
-                disabled === false && submit === false && (
+                disabled === false && submit === false && fetching === false && (
                     <button onClick={onClick} className={style.button}>
                         {
                             icon !== false && (
@@ -32,7 +43,7 @@ const Button = ({ onClick = () => { }, label = "", icon = false, disabled = fals
                 )
             }
             {
-                submit === true && (
+                submit === true && fetching === false && (
                     <button type="submit" className={style.button}>
                         {
                             icon !== false && (

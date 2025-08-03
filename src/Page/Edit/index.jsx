@@ -1,39 +1,38 @@
-import React, { useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { reduxForm } from "redux-form";
+import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import useFetch from "../../Component/useFetch";
 import Section from "../../Component/Section";
 import Loader from "../../Component/Loader";
 import Button from "../../Component/Button";
+import Render from "../../Component/Render";
 import Title from "../../Component/Title"
 import Form from "../Form";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 
-const Edit = (props) => {
-    const { initialize, handleSubmit } = props
+const Edit = () => {
     const { id } = useParams();
-    const { data, fetching } = useFetch(`http://localhost:3001/list/${id}`)
+    const navigate = useNavigate();
+    const [formValues, setFormValues] = useState({})
+    const { data, fetching } = useFetch(`http://localhost:3001/list/${id}`);
 
-    const memoData = useMemo(() => {
-        return data.list
-    },[data]) 
+    const list = useMemo(() => data.list || {}, [data])
 
     useEffect(() => {
-        if (fetching === false && memoData) {
-            initialize(memoData);
+        if (fetching === false && list.id) {
+            setFormValues(list);
         }
-        console.log(data.list, props);
-    }, [fetching, memoData, initialize])
+    }, [list, fetching])
 
-    const onSubmit = (value) => {
-        console.log(value);
+    const handleSubmit = (e, loadOnMount) => {
+        e.preventDefault();
+        loadOnMount()
     }
 
     return (
         <Section>
-            <Title>Edit - {data?.list?.title} movie</Title>
+            <Title>Edit - {list.title} movie</Title>
             <div className={style.edit}>
                 {
                     fetching === true && (
@@ -43,24 +42,44 @@ const Edit = (props) => {
                     )
                 }
                 {
-                    fetching === false && (
-                        <form name="edit" onSubmit={handleSubmit(onSubmit)}>
-                            <Form />
-                            <div className={style.button}>
-                                <Button
-                                    submit={true}
-                                    label="Submit"
-                                />
-                            </div>
-                        </form>
+                    fetching === false && formValues.id && (
+                        <Render
+                            url={`http://localhost:3001/list/${list.id}`}
+                            method="put"
+                            loadOnMount={false}
+                            paramsData={formValues}
+                            onSuccess={() => navigate("/home")}
+                            render={({ loadOnMount, fetching }) => (
+                                <form
+                                    name="edit"
+                                    onSubmit={(e) => handleSubmit(e, loadOnMount)}
+                                >
+                                    <Form
+                                        formValues={formValues}
+                                        onChange={(value) => {
+                                            setFormValues(prev => {
+                                                return {
+                                                    ...prev,
+                                                    ...value
+                                                }
+                                            })
+                                        }}
+                                    />
+                                    <div className={style.button}>
+                                        <Button
+                                            label="Submit"
+                                            submit={true}
+                                            fetching={fetching}
+                                        />
+                                    </div>
+                                </form>
+                            )}
+                        />
                     )
                 }
             </div>
         </Section>
-
     )
 }
 
-export default reduxForm({
-    form: "edit"
-})(Edit);
+export default Edit;

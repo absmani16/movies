@@ -1,16 +1,6 @@
 {
   "list": [
     {
-      "id": "5",
-      "title": "Mad Max: Fury Road",
-      "type": "Action/Adventure",
-      "director": "George Miller",
-      "budget": "$150 million",
-      "location": "Australia",
-      "duration": "120 minutes",
-      "year": "2015"
-    },
-    {
       "id": "6",
       "title": "The Dark Knight",
       "type": "Action/Crime",
@@ -18,27 +8,7 @@
       "budget": "$185 million",
       "location": "USA",
       "duration": "152 minutes",
-      "year": "2008"
-    },
-    {
-      "id": "7",
-      "title": "Life of Pi",
-      "type": "Adventure/Drama",
-      "director": "Ang Lee",
-      "budget": "$120 million",
-      "location": "India/Canada",
-      "duration": "127 minutes",
-      "year": "2012"
-    },
-    {
-      "id": "8",
-      "title": "Interstellar",
-      "type": "Science Fiction",
-      "director": "Christopher Nolan",
-      "budget": "$165 million",
-      "location": "USA/Canada/Iceland",
-      "duration": "169 minutes",
-      "year": "2014"
+      "year": "2004"
     },
     {
       "id": "9",
@@ -58,7 +28,7 @@
       "budget": "$15 million",
       "location": "India",
       "duration": "120 minutes",
-      "year": "2008"
+      "year": "2021"
     },
     {
       "id": "11",
@@ -98,66 +68,6 @@
       "budget": "$55 million",
       "location": "USA",
       "duration": "142 minutes",
-      "year": "1994"
-    },
-    {
-      "id": "15",
-      "title": "The Matrix",
-      "type": "Science Fiction/Action",
-      "director": "The Wachowskis",
-      "budget": "$63 million",
-      "location": "USA",
-      "duration": "136 minutes",
-      "year": "1999"
-    },
-    {
-      "id": "16",
-      "title": "Dangal",
-      "type": "Biography/Sports",
-      "director": "Nitesh Tiwari",
-      "budget": "$9.4 million",
-      "location": "India",
-      "duration": "161 minutes",
-      "year": "2016"
-    },
-    {
-      "id": "17",
-      "title": "Baahubali: The Beginning",
-      "type": "Action/Fantasy",
-      "director": "S. S. Rajamouli",
-      "budget": "$28 million",
-      "location": "India",
-      "duration": "159 minutes",
-      "year": "2015"
-    },
-    {
-      "id": "18",
-      "title": "Coco",
-      "type": "Animation/Fantasy",
-      "director": "Lee Unkrich",
-      "budget": "$175 million",
-      "location": "USA",
-      "duration": "105 minutes",
-      "year": "2017"
-    },
-    {
-      "id": "19",
-      "title": "Black Panther",
-      "type": "Superhero/Action",
-      "director": "Ryan Coogler",
-      "budget": "$200 million",
-      "location": "USA",
-      "duration": "134 minutes",
-      "year": "2018"
-    },
-    {
-      "id": "20",
-      "title": "The Lion King",
-      "type": "Animation/Adventure",
-      "director": "Roger Allers & Rob Minkoff",
-      "budget": "$45 million",
-      "location": "USA",
-      "duration": "88 minutes",
       "year": "1994"
     }
   ]

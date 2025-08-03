@@ -23,7 +23,7 @@ const Render = ({
     }
 
     useEffect(() => {
-        if (status === 200) {
+        if ([200, 201].includes(status)) {
             onSuccess({ data })
         }
     }, [status, onSuccess, data])
