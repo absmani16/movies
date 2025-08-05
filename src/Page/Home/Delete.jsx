@@ -6,12 +6,11 @@ import style from "./style.module.css";
 const Delete = ({ item, onUpdate, list }) => {
     return (
         <Render
-            url={`http://localhost:3001/list/${item.id}`}
+            url={`https://movies-cb9d.onrender.com/list/${item.id}`}
             method="delete"
             loadOnMount={false}
-            onSuccess={({ data }) => {
-                const remmovedId = data.list.id
-                const currentItem = (list || []).filter(item => item.id !== remmovedId);
+            onSuccess={() => {
+                const currentItem = (list || []).filter(val => val.id !== item.id);
                 onUpdate({ list: currentItem })
             }}
             render={({ loadOnMount, fetching }) => (
@@ -43,4 +42,4 @@ const Delete = ({ item, onUpdate, list }) => {
     )
 }
 
-export default Delete
+export default Delete;

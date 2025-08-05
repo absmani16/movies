@@ -22,7 +22,7 @@ const Create = () => {
         <Section>
             <Title>Create Movie</Title>
             <Render
-                url="http://localhost:3001/list"
+                url="https://movies-cb9d.onrender.com/list"
                 method="post"
                 loadOnMount={false}
                 paramsData={formValues}

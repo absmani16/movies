@@ -14,8 +14,8 @@ import style from "./style.module.css";
 const Home = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
-    const { data: responseData, fetching } = useFetch("http://localhost:3001/list");
-
+    const { data: responseData, fetching } = useFetch("https://movies-cb9d.onrender.com/list");
+console.log(data);
     useEffect(() => {
         if (fetching === false) {
             setData(responseData);

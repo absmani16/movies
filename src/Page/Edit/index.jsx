@@ -15,7 +15,7 @@ const Edit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState({})
-    const { data, fetching } = useFetch(`http://localhost:3001/list/${id}`);
+    const { data, fetching } = useFetch(`https://movies-cb9d.onrender.com/list/${id}`);
 
     const list = useMemo(() => data.list || {}, [data])
 
@@ -32,7 +32,7 @@ const Edit = () => {
 
     return (
         <Section>
-            <Title>Edit - {list.title} movie</Title>
+            <Title>Edit - {list.title || "Loading..."}</Title>
             <div className={style.edit}>
                 {
                     fetching === true && (
@@ -44,7 +44,7 @@ const Edit = () => {
                 {
                     fetching === false && formValues.id && (
                         <Render
-                            url={`http://localhost:3001/list/${list.id}`}
+                            url={`https://movies-cb9d.onrender.com/list/${list.id}`}
                             method="put"
                             loadOnMount={false}
                             paramsData={formValues}
