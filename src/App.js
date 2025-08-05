@@ -19,9 +19,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={SuspensePage(<Home />)} />
-        <Route path="/:id" element={SuspensePage(<Edit />)} />
-        <Route path="/create" element={SuspensePage(<Create />)} />
+        <Route path="/movies" element={SuspensePage(<Home />)} />
+        <Route path="/movies/:id" element={SuspensePage(<Edit />)} />
+        <Route path="movies/create" element={SuspensePage(<Create />)} />
       </Routes>
     </BrowserRouter>
   );
