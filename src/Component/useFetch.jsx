@@ -8,7 +8,8 @@ async function api(method, url, paramsData) {
         return response
     }
     catch (error) {
-        toast(error.response.statusText, { type: "error" });
+        console.log(error);
+        toast(error.message, { type: "error", fontSzie: "10px" });
         console.log(error.message);
     }
 }

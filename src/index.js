@@ -11,6 +11,7 @@ root.render(
       theme="dark"
       hideProgressBar={true}
       closeOnClick={true}
+      closeButton={false}
     />
   </React.StrictMode>
 );
