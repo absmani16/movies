@@ -48,7 +48,7 @@ const Edit = () => {
                             method="put"
                             loadOnMount={false}
                             paramsData={formValues}
-                            onSuccess={() => navigate("/")}
+                            onSuccess={() => navigate("/movies")}
                             render={({ loadOnMount, fetching }) => (
                                 <form
                                     name="edit"

@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/movies" element={SuspensePage(<Home />)} />
         <Route path="/movies/:id" element={SuspensePage(<Edit />)} />
-        <Route path="movies/create" element={SuspensePage(<Create />)} />
+        <Route path="/movies/create" element={SuspensePage(<Create />)} />
       </Routes>
     </BrowserRouter>
   );

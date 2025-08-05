@@ -15,7 +15,7 @@ const Home = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const { data: responseData, fetching } = useFetch("https://movies-cb9d.onrender.com/list");
-console.log(data);
+
     useEffect(() => {
         if (fetching === false) {
             setData(responseData);
@@ -30,7 +30,7 @@ console.log(data);
                     label="Create"
                     icon="fa-solid fa-list-ul"
                     className={style.addBtn}
-                    onClick={() => navigate("/create")}
+                    onClick={() => navigate("create")}
                 />
                 {
                     fetching === true && (
@@ -55,7 +55,7 @@ console.log(data);
                                     columnTitle: "Actions",
                                     render: ({ item }) => (
                                         <div className={style.actions}>
-                                            <button title="Edit" onClick={() => navigate(`/${item.id}`)}>
+                                            <button title="Edit" onClick={() => navigate(item.id)}>
                                                 <i className="fa-solid fa-pencil"></i>
                                             </button>
                                             <Delete
