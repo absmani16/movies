@@ -17,10 +17,12 @@ const Delete = ({ item, onUpdate, list }) => {
                 <div className={`${style.delete}${fetching === true ? " " + style.loading : ""}`}>
                     {
                         fetching === true && (
-                            <Loader
-                                text={false}
-                                className={style.loader}
-                            />
+                            <div className={style.deleteLoader}>
+                                <Loader
+                                    text={false}
+                                    className={style.loader}
+                                />
+                            </div>
                         )
                     }
                     {

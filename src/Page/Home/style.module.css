@@ -28,7 +28,7 @@
 }
 
 .loading {
-    margin: 5px 15px 5px;
+    margin: 5px 16px 5px;
 }
 
 .loader {
@@ -40,4 +40,8 @@
 .tableLoader {
     position: relative;
     margin-top: 60px;
+}
+
+.deleteLoader {
+    position: relative;
 }
