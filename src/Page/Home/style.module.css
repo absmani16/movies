@@ -28,11 +28,12 @@
 }
 
 .loading {
+    position: relative;
     margin: 5px 16px 5px;
 }
 
 .loader {
-    width: 25px;
+    max-width: 25px;
     background-color: #fff;
     border-radius: 50%;
 }
@@ -40,8 +41,4 @@
 .tableLoader {
     position: relative;
     margin-top: 60px;
-}
-
-.deleteLoader {
-    position: relative;
 }
