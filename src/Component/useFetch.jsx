@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
+import { Context } from "../action";
 
 async function api(method, url, paramsData) {
     try {
@@ -8,7 +9,6 @@ async function api(method, url, paramsData) {
         return response
     }
     catch (error) {
-        console.log(error);
         toast(error.message, { type: "error", fontSzie: "10px" });
         console.log(error.message);
     }
@@ -20,43 +20,23 @@ export default function useFetch(
     disabled = false,
     paramsData = false
 ) {
-    const [response, setResponse] = useState({
-        data: {},
-        fetching: false,
-        status: false
-    });
+    const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
         async function fetchData() {
-            setResponse((prev) => {
-                return {
-                    ...prev,
-                    fetching: true
-                }
-            })
+            dispatch({ type: "update_state_fetching", meta: { method, payload: paramsData } });
             await api(method, url, paramsData)
-                .then((response) => {
-                    setResponse({
-                        fetching: false,
-                        status: response.status,
-                        data: {
-                            list: response.data
-                        }
-                    })
-                })
-                .catch(() => {
-                    setResponse(prev => {
-                        return {
-                            ...prev,
-                            fetching: false
-                        }
-                    })
-                })
+                .then(response => {
+                    if (response) {
+                        const type = method === "delete" ? `update_state_${method}` : "update_state";
+                        dispatch({ type, response: { ...response, meta: { method, payload: paramsData } } });
+                    }
+                });
         }
         if (disabled === false) {
             fetchData();
         }
-    }, [paramsData, url, disabled, method])
+    }, [paramsData, url, disabled, method, dispatch])
 
-    return response;
+    return state;
 }

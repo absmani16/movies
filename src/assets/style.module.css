@@ -5,18 +5,30 @@
 }
 
 body {
-    background-color: #1c3c47;
+    background-color: #0d5c76;
     color: #fff;
     letter-spacing: 1px;
-    font-family: Inter,sans-serif;
+    font-family: Inter, sans-serif;
 }
 
 button {
     border: none;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
     outline: none;
+    border: 1px solid transparent;
+    transition: all 0.4s;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input:focus-visible {
+    border: 1px solid #424344;
+    background: #ffffffdb;
 }
 
 :global(.Toastify__toast-theme--dark) {

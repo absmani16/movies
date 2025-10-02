@@ -7,15 +7,15 @@ import Button from "../../Component/Button";
 import Title from "../../Component/Title";
 import Form from "../Form";
 
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 const Create = () => {
     const [formValues, setFormValues] = useState({});
     const navigate = useNavigate();
 
-    const handleSubmit = (e, loadOnMount) => {
+    const handleSubmit = (e, loadOnApiCall) => {
         e.preventDefault();
-        loadOnMount()
+        loadOnApiCall();
     }
 
     return (
@@ -27,10 +27,10 @@ const Create = () => {
                 loadOnMount={false}
                 paramsData={formValues}
                 onSuccess={() => navigate("/movies")}
-                render={({ loadOnMount, fetching }) => (
-                    <form 
-                    name="create"
-                    onSubmit={(e) => handleSubmit(e, loadOnMount)}
+                render={({ loadOnApiCall, fetching }) => (
+                    <form
+                        name="create"
+                        onSubmit={(e) => handleSubmit(e, loadOnApiCall)}
                     >
                         <Form
                             formValues={formValues}

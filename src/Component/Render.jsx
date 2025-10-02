@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useFetch from "./useFetch";
 
 const Render = ({
@@ -9,27 +9,31 @@ const Render = ({
     render = () => { },
     onSuccess = () => { }
 }) => {
-    const [hasApiCall, setHasApiCall] = useState(disabled)
-    const { data, fetching, status } = useFetch(url, method, !hasApiCall, paramsData);
+    const timer = useRef(null);
+    const [hasApiCall, setHasApiCall] = useState(disabled);
+    const { data, fetching, status, action } = useFetch(url, method, !hasApiCall, paramsData);
 
     useEffect(() => {
         if (disabled !== hasApiCall) {
-            setHasApiCall(loadOnMount)
+            setHasApiCall(loadOnApiCall)
         }
-    }, [disabled, hasApiCall])
+    }, [disabled, hasApiCall, setHasApiCall])
 
-    const loadOnMount = () => {
+    const loadOnApiCall = () => {
         setHasApiCall(true);
     }
 
     useEffect(() => {
-        if ([200, 201].includes(status)) {
-            onSuccess({ data })
+        if ([200, 201].includes(status) && !["get", "delete"].includes(action)) {
+            clearTimeout(timer.current);
+            timer.current = setTimeout(() => {
+                onSuccess({ data });
+            }, 300)
         }
-    }, [status, onSuccess, data])
+    }, [onSuccess, data, status, action])
 
     return (
-        render({ fetching, data, loadOnMount })
+        render({ fetching, action, data, loadOnApiCall })
     )
 }
 

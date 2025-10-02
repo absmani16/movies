@@ -30,7 +30,7 @@ const Form = ({ onChange, formValues }) => {
         },
         {
             label: "Duration",
-            type: "Durations",
+            type: "text",
             placeholder: "Enter Duration"
         },
         {

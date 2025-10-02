@@ -1,3 +1,7 @@
+.centre {
+    text-align: center;
+}
+
 .title {
     font-weight: 600;
     display: block;
