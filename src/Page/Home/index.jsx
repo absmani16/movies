@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Delete from "./Delete";
@@ -13,8 +13,9 @@ import style from "./style.module.css";
 
 const Home = () => {
     const navigate = useNavigate();
+    const [select, setSelect] = useState(false);
     const { dispatch } = useContext(Context);
-    const { data, fetching, action } = useFetch("https://movies-cb9d.onrender.com/list");
+    const { data, fetching, loaded } = useFetch("https://movies-cb9d.onrender.com/list");
 
     useEffect(() => {
         return () => {
@@ -35,7 +36,7 @@ const Home = () => {
                 <Grid
                     data={data.list}
                     fetching={fetching}
-                    action={action}
+                    loaded={loaded}
                     columns={{
                         title: "Title",
                         type: "Type",
@@ -51,7 +52,7 @@ const Home = () => {
                                     <button title="Edit" onClick={() => navigate(item.id)}>
                                         <i className="fa-solid fa-pencil"></i>
                                     </button>
-                                    <Delete item={item} />
+                                    <Delete item={item} select={select} onSelect={(val) => setSelect(val)} />
                                 </div>
                             )
                         }

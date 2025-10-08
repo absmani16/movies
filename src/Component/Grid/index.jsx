@@ -7,10 +7,10 @@ const Grid = ({
     data = [],
     columns = {},
     fetching = false,
-    action = false
+    loaded = false
 }) => {
 
-    if (fetching === true && action === "get") {
+    if (fetching === true && loaded === false) {
         return (
             <div className={style.tableLoader}>
                 <Loader />

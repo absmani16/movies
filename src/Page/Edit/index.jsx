@@ -17,7 +17,7 @@ const Edit = () => {
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState({});
     const { dispatch } = useContext(Context);
-    const { data, fetching, status, action } = useFetch(`https://movies-cb9d.onrender.com/list/${id}`);
+    const { data, fetching, status, loaded } = useFetch(`https://movies-cb9d.onrender.com/list/${id}`);
 
     useEffect(() => {
         return () => {
@@ -36,7 +36,7 @@ const Edit = () => {
         loadOnApiCall()
     }
 
-    if (fetching === true && action === "get") {
+    if (fetching === true && loaded === false) {
         return (
             <Section>
                 <Title>Edit - Loading...</Title>

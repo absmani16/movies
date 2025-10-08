@@ -24,13 +24,13 @@ const Render = ({
     }
 
     useEffect(() => {
-        if ([200, 201].includes(status) && !["get", "delete"].includes(action)) {
+        if ([200, 201].includes(status) && ["put", "post", "delete"].includes(action) && action === method) {
             clearTimeout(timer.current);
             timer.current = setTimeout(() => {
                 onSuccess({ data });
             }, 300)
         }
-    }, [onSuccess, data, status, action])
+    }, [onSuccess, data, status, action, method])
 
     return (
         render({ fetching, action, data, loadOnApiCall })

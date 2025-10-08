@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useContext, useEffect } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../action";
 
@@ -24,7 +24,7 @@ export default function useFetch(
 
     useEffect(() => {
         async function fetchData() {
-            dispatch({ type: "update_state_fetching", meta: { method, payload: paramsData } });
+            dispatch({ type: "update_state_fetching", meta: { method } });
             await api(method, url, paramsData)
                 .then(response => {
                     if (response) {

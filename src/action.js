@@ -10,40 +10,41 @@ export const initialState = {
     action: false
 }
 
-export const reducer = (initialState, action) => {
+export const reducer = (state, action) => {
     switch (action.type) {
         case "update_state_fetching":
             return {
-                ...initialState,
+                ...state,
                 fetching: true,
-                loaded: false,
-                action: action.meta.method
+                loaded: ["put", "delete"].includes(action.meta.method),
+                action: false
             }
         case "update_state":
             return {
-                ...initialState,
+                ...state,
                 fetching: false,
                 loaded: true,
                 status: action.response.status,
                 action: action.response.config.method,
                 data: {
+                    ...state.data,
                     list: action.response.data
                 }
             }
         case "update_state_delete":
             return {
-                ...initialState,
+                ...state,
                 fetching: false,
                 loaded: true,
                 status: action.response.status,
                 action: action.response.config.method,
                 data: {
-                    list: initialState.data.list.filter(val => val.id !== action.response.meta.payload.id)
+                    list: state.data.list.filter(val => val.id !== action.response.meta.payload.id)
                 }
             }
         case "update_state_reset":
             return {
-                ...initialState,
+                ...state,
                 fetching: false,
                 status: false,
                 data: false,
@@ -51,6 +52,6 @@ export const reducer = (initialState, action) => {
                 action: false
             }
         default:
-            return initialState;
+            return state;
     }
 }
