@@ -1,0 +1,38 @@
+.button {
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    height: 50px;
+    width: 150px;
+    font-size: 18px;
+    background-color: #fff;
+    color: #1c3c47;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: none;
+}
+
+.button span {
+    padding-right: 10px;
+}
+
+.button:hover {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    transition: all;
+}
+
+.loader {
+    width: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+}

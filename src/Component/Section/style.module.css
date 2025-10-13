@@ -1,0 +1,16 @@
+.section {
+    margin: 35px 50px;
+    position: relative;
+}
+
+@media (max-width: 700px) {
+    .section {
+        margin: 35px;
+    }
+}
+
+@media (max-width: 550px) {
+    .section {
+        margin: 25px;
+    }
+}
